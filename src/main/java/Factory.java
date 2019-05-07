@@ -1,11 +1,19 @@
+import document.Document;
+import document.Incoming;
+import document.Outgoing;
+import document.Task;
+
 import java.time.LocalDate;
 import java.util.Random;
-import java.util.Arrays;
+//import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Factory {
 
-    private static int[] taskArray = new int [100];
-    static int taskIndex = 0;
+    static ArrayList<Integer> taskList = new ArrayList();
+    static ArrayList<Integer> incomingList = new ArrayList();
+    static ArrayList<Integer> outgoingList = new ArrayList();
+
 
     private static String[] respExecutiveArr = {"Иванов Иван", "Петр Петров", "Смирнов Олег", "Лебедев Иван"};
     private static String[] authorArr = {"Иванов Иван", "Петр Петров", "Смирнов Олег", "Лебедев Иван"};
@@ -14,64 +22,41 @@ public class Factory {
     private static String[] recipientArr = {"Евстигнеева Анжелика", "Петрова Елена", "Белов Михаил", "Козлов Иван"};
     private static String[] deliveryMethodArr = {"Почта России", "СДЭК", "Пони-экспресс"};
 
-    public Factory(){
 
-    }
 
-    public static void bubbleSort(int[] arr){
-        for(int i = arr.length-1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-            if( arr[j] > arr[j+1] ){
-                int tmp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = tmp;
+    public static void setRandID(Document doc, ArrayList list) throws DocumentExistsException{
+        Random random = new Random();
+        int rnd;
+        boolean flag = false;
+
+        while (flag == false) {
+            rnd = random.nextInt(100);
+            if (list.contains(rnd)){
+                throw new DocumentExistsException("Document with number"+ rnd + "already exists");
+            }
+            else {
+                doc.setID(rnd);
+                list.add(rnd);
+                flag = true;
             }
         }
     }
-}
-    public void setTaskArray() {
-        for (int i = 0; i < taskArray.length; i++)
-            taskArray[i] = -1;
-    }
 
-    public void getTaskArray() {
-        for (int i = 0; i < taskArray.length; i++)
-        System.out.print(" "+taskArray[i]);
-    }
 
     public static Document createDocument(ClassTypes type) throws DocumentExistsException{
-        Document doc = null;
+        Document doc;
         Random random = new Random();
 
         switch (type) {
             case TASK:
                 doc = new Task();
-                int rnd;
-                boolean flag = false;
-
-               while (flag == false) {
-                   bubbleSort(taskArray);
-                    rnd = random.nextInt(100);
-
-                   if (Arrays.binarySearch(taskArray, rnd) >= 0){
-                       System.out.println(rnd);
-                       throw new DocumentExistsException("Document with this number already exists");
-                   }
-                    else {
-                        doc.setID(rnd);
-                        taskArray[taskIndex] = rnd;
-                        taskIndex++;
-                        //System.out.println(doc.getID());
-                        flag = true;
-                    }
-               }
+                setRandID(doc, taskList);
 
                 int re = random.nextInt(4);
                 ((Task)doc).setRespExecutive(respExecutiveArr[re]);
 
                 int ra = random.nextInt(4);
                 doc.setAuthor(authorArr[ra]);
-                //System.out.println(doc.getAuthor());
 
                 RandomDate rd = new RandomDate(LocalDate.of(2010, 1, 1), LocalDate.of(2019, 1, 1));
                 ((Task)doc).setDataExtradition(rd.nextDate());
@@ -86,9 +71,13 @@ public class Factory {
 
             case INCOMING:
                 doc = new Incoming();
+                setRandID(doc, incomingList);
 
                 int rs = random.nextInt(4);
                 ((Incoming)doc).setSender(senderArr[rs]);
+
+                int rai = random.nextInt(4);
+                doc.setAuthor(authorArr[rai]);
 
                 int rr = random.nextInt(4);
                 ((Incoming)doc).setRecipient(recipientArr[rr]);
@@ -103,6 +92,10 @@ public class Factory {
 
             case OUTGOING:
                 doc = new Outgoing();
+                setRandID(doc, outgoingList);
+
+                int rao = random.nextInt(4);
+                doc.setAuthor(authorArr[rao]);
 
                 int rr2 = random.nextInt(4);
                 ((Outgoing)doc).setRecipient(recipientArr[rr2]);
@@ -110,6 +103,8 @@ public class Factory {
                 int rdm = random.nextInt(4);
                 ((Outgoing)doc).setDeliveryMethod(deliveryMethodArr[rdm]);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
         }
         return doc;
     }

@@ -1,28 +1,27 @@
-import java.time.LocalDate;
+import document.Document;
+
 public class Main {
     public static void main(String[] args)
     {
-        Factory factory = new Factory();
-        factory.setTaskArray();
         String str;
 
         try{
-            Document doc1 = factory.createDocument(ClassTypes.TASK);
+            Document doc1 = Factory.createDocument(ClassTypes.TASK);
             System.out.println("Автор "+doc1.getAuthor()+":");
             str = doc1.toString();
             System.out.println(str);
 
-            Document doc2 = factory.createDocument(ClassTypes.TASK);
+            Document doc2 = Factory.createDocument(ClassTypes.TASK);
             System.out.println("Автор "+doc2.getAuthor()+":");
             str = doc2.toString();
             System.out.println(str);
 
-            Document doc3 = factory.createDocument(ClassTypes.INCOMING);
-            str = doc3.toString();
+            Document doc3 = Factory.createDocument(ClassTypes.INCOMING);
             System.out.println("Автор "+doc3.getAuthor()+":");
+            str = doc3.toString();
             System.out.println(str);
 
-            Document doc4 = factory.createDocument(ClassTypes.OUTGOING);
+            Document doc4 = Factory.createDocument(ClassTypes.OUTGOING);
             System.out.println("Автор "+doc4.getAuthor()+":");
             str = doc4.toString();
             System.out.println(str);
