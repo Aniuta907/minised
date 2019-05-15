@@ -31,30 +31,15 @@ public class JAXBclass {
 
     public static List<Person> read() {
         List<Person> list = null;
-        String str;
         try {
-//            Person person = new Person();
-//            String xmldata = "    <person>\n" +
-//                    "        <id>0001</id>\n" +
-//                    "        <lastname>Петров</lastname>\n" +
-//                    "        <firstname>Кирилл</firstname>\n" +
-//                    "        <patronymic>Александрович</patronymic>\n" +
-//                    "        <post>маркетолог</post>\n" +
-//                    "    </person>";
-            //StringReader reader = new StringReader(xmldata);
 
             File file = new File("D:\\projects\\minised\\Persons.xml");
             JAXBContext jaxbContext = JAXBContext.newInstance(Data.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Data data = (Data) jaxbUnmarshaller.unmarshal(file);
-//            System.out.println(data);
 
             list=data.getPersons();
-//            for(Person per:list) {
-//                str = per.toString();
-//                System.out.println(str);
-//            }
         }
         catch (JAXBException e) {
             e.printStackTrace();

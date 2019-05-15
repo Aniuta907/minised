@@ -1,7 +1,3 @@
-public enum ClassTypes {
-        TASK,
-        INCOMING,
-        OUTGOING
-    }
+public enum ClassTypes { TASK, INCOMING, OUTGOING }
 
 

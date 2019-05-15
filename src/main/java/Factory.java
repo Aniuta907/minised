@@ -1,4 +1,3 @@
-import com.google.gson.Gson;
 import document.Document;
 import document.Incoming;
 import document.Outgoing;
@@ -15,13 +14,11 @@ public class Factory {
     static ArrayList<Integer> incomingList = new ArrayList();
     static ArrayList<Integer> outgoingList = new ArrayList();
 
-    private static String[] respExecutiveArr = {"Иванов Иван", "Петр Петров", "Смирнов Олег", "Лебедев Иван"};
-//    private static String[] authorArr = {"Иванов Иван", "Петр Петров", "Смирнов Олег", "Лебедев Иван"};
-    private static String[] controllerInstArr = {"Белкин Аркадий", "Сидоров Александр", "Ахметов Артур", "Сулейманов Айдар"};
-    private static String[] senderArr = {"Букатина Мария", "Гребнев Александр", "Боронилова Нина", "Ковалев Андрей"};
-    private static String[] recipientArr = {"Евстигнеева Анжелика", "Петрова Елена", "Белов Михаил", "Козлов Иван"};
-    private static String[] deliveryMethodArr = {"Почта России", "СДЭК", "Пони-экспресс", "ePacket"};
-
+    private static String[] RESPEXECUTIVEARR = {"Иванов Иван", "Петр Петров", "Смирнов Олег", "Лебедев Иван"};
+    private static String[] CONTROLLERINSTARR = {"Белкин Аркадий", "Сидоров Александр", "Ахметов Артур", "Сулейманов Айдар"};
+    private static String[] SENDERARR = {"Букатина Мария", "Гребнев Александр", "Боронилова Нина", "Ковалев Андрей"};
+    private static String[] RECIPIENTARR = {"Евстигнеева Анжелика", "Петрова Елена", "Белов Михаил", "Козлов Иван"};
+    private static String[] DELIVERYMETHODARR = {"Почта России", "СДЭК", "Пони-экспресс", "ePacket"};
 
 
     public static void setRandID(Document doc, ArrayList list) throws DocumentExistsException{
@@ -57,7 +54,7 @@ public class Factory {
                 setRandID(doc, taskList);
 
                 int re = random.nextInt(4);
-                ((Task)doc).setRespExecutive(respExecutiveArr[re]);
+                ((Task)doc).setRespExecutive(RESPEXECUTIVEARR[re]);
 
                 int ra = random.nextInt(4);
                 doc.setAuthor(person.get(ra).getPersonLastName());
@@ -72,7 +69,7 @@ public class Factory {
                 ((Task)doc).setSignControl(rsc);
 
                 int rс = random.nextInt(4);
-                ((Task)doc).setСontroller(controllerInstArr[rс]);
+                ((Task)doc).setСontroller(CONTROLLERINSTARR[rс]);
 
                 break;
 
@@ -84,13 +81,13 @@ public class Factory {
                 doc.setDataReg(rdr2.nextDate());
 
                 int rs = random.nextInt(4);
-                ((Incoming)doc).setSender(senderArr[rs]);
+                ((Incoming)doc).setSender(SENDERARR[rs]);
 
                 int rai = random.nextInt(4);
                 doc.setAuthor(person.get(rai).getPersonLastName());
 
                 int rr = random.nextInt(4);
-                ((Incoming)doc).setRecipient(recipientArr[rr]);
+                ((Incoming)doc).setRecipient(RECIPIENTARR[rr]);
 
                 int rn = random.nextInt(100);
                 ((Incoming)doc).setIncNumber(rn);
@@ -111,10 +108,10 @@ public class Factory {
                 doc.setAuthor(person.get(rao).getPersonLastName());
 
                 int rr2 = random.nextInt(4);
-                ((Outgoing)doc).setRecipient(recipientArr[rr2]);
+                ((Outgoing)doc).setRecipient(RECIPIENTARR[rr2]);
 
                 int rdm = random.nextInt(4);
-                ((Outgoing)doc).setDeliveryMethod(deliveryMethodArr[rdm]);
+                ((Outgoing)doc).setDeliveryMethod(DELIVERYMETHODARR[rdm]);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);

@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "organization")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Organization extends Staff {
+
     @XmlElement
     String fullTitle; //полное наименование
     @XmlElement
