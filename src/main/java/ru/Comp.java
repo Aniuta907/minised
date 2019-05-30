@@ -1,3 +1,8 @@
+package ru;
+
+import ru.document.Document;
+import ru.enumeration.ClassTypes;
+
 import java.time.LocalDate;
 
 class Comp implements Comparable {
@@ -5,13 +10,21 @@ class Comp implements Comparable {
     int regNumber; //регистрационный номер документа
     LocalDate dataReg; //дата регистрации документа
     String author; //автор документа
+    ClassTypes type;
+
+    Comp(Document doc) {
+//        switch(doc.getClass().getName()) {
+//            case "Incoming":
+//                this.type
+//        };
+        this.regNumber = doc.getID();
+    }
 
     Comp(int regNumber, LocalDate dataReg, String author) {
         this.regNumber = regNumber;
         this.dataReg = dataReg;
         this.author = author;
     }
-
 
     public int compareTo(Object obj) { //значения сортируются сначала по полю regNumber, а затем по dataReg
         Comp entry = (Comp) obj;
@@ -39,4 +52,16 @@ class Comp implements Comparable {
         return 0;
     }
 
+    public void setType(ClassTypes name) {
+        this.type = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Comp{" +
+                "regNumber=" + regNumber +
+                ", dataReg=" + dataReg +
+                ", author='" + author + '\'' +
+                '}';
+    }
 }

@@ -1,3 +1,5 @@
+package ru;
+
 import java.time.LocalDate;
 import java.util.Random;
 
@@ -21,7 +23,7 @@ public class RandomDate {
 
     @Override
     public String toString() {
-        return "RandomDate{" +
+        return "ru.RandomDate{" +
                 "maxDate=" + maxDate +
                 ", minDate=" + minDate +
                 '}';

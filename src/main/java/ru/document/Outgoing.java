@@ -1,4 +1,4 @@
-package document;
+package ru.document;
 
 public class Outgoing extends Document {
     private String recipient; //адресат

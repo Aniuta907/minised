@@ -1,4 +1,4 @@
-package document;
+package ru.document;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public abstract class Document {
     protected int regNumber; //регистрационный номер документа
     protected LocalDate dataReg; //дата регистрации документа
     protected String author; //автор документа
-
+    protected String docType;
 
     public int getID() {
         return id;

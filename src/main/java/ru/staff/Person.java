@@ -1,17 +1,25 @@
+package ru.staff;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/** Класс служит для хранения объектов со свойствами
+ <b>firstname</b>, <b>lastname</b>, <b>patronymic</b>, <b>post</b> **/
 @XmlRootElement(name = "person")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Person extends Staff {
+    /** Поле имя*/
     @XmlElement
     private String firstname; //имя
+    /** Поле фамилия*/
     @XmlElement
     private String lastname; //фамилия
+    /** Поле отчество*/
     @XmlElement
     private String patronymic; //отчество
+    /** Поле должность*/
     @XmlElement
     private String post; //должность
 

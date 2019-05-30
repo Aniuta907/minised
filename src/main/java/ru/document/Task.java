@@ -1,4 +1,4 @@
-package document;
+package ru.document;
 
 import java.time.LocalDate;
 
